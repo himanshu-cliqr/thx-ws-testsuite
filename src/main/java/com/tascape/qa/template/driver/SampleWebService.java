@@ -45,10 +45,6 @@ public class SampleWebService extends EntityDriver {
         Endpoint(String endpoint) {
             this.value = endpoint;
         }
-
-        String value() {
-            return this.value;
-        }
     }
 
     private WebServiceClient wsc;
@@ -58,16 +54,16 @@ public class SampleWebService extends EntityDriver {
     }
 
     public String getStatus() throws IOException {
-        return this.wsc.get(Endpoint.STATUS.value());
+        return this.wsc.get(Endpoint.STATUS.value);
     }
 
     public String getEntity() throws IOException {
-        String res = this.wsc.get(Endpoint.ENTITY.value());
+        String res = this.wsc.get(Endpoint.ENTITY.value);
         return res;
     }
 
     public String postEntity(JSONObject entity) throws IOException {
-        String id = this.wsc.postJson(Endpoint.ENTITY.value(), entity);
+        String id = this.wsc.postJson(Endpoint.ENTITY.value, entity);
         return id;
     }
 
