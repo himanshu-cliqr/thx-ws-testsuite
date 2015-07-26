@@ -13,11 +13,11 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tascape.qa.template.test;
+package com.tascape.qa.grws.test;
 
 import com.tascape.qa.th.driver.TestDriver;
 import com.tascape.qa.th.test.AbstractTest;
-import com.tascape.qa.template.driver.SampleWebService;
+import com.tascape.qa.grws.driver.GithubRepoWebService;
 import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -27,21 +27,28 @@ import org.slf4j.LoggerFactory;
  *
  * @author linsong wang
  */
-public class SampleTests extends AbstractTest {
-    private static final Logger LOG = LoggerFactory.getLogger(SampleTests.class);
+public class GithubRepoTests extends AbstractTest {
+    private static final Logger LOG = LoggerFactory.getLogger(GithubRepoTests.class);
 
-    public static final TestDriver SAMPLE_SERVICE = new TestDriver(SampleTests.class, "SAMPLE_SERVICE");
+    public static final TestDriver GITHUB_SERVICE = new TestDriver(GithubRepoTests.class, "GITHUB_SERVICE");
 
-    private final SampleWebService service;
+    private final GithubRepoWebService service;
 
-    public SampleTests() {
-        this.service = this.getEntityDriver(SAMPLE_SERVICE, SampleWebService.class);
+    public GithubRepoTests() {
+        this.service = this.getEntityDriver(GITHUB_SERVICE, GithubRepoWebService.class);
     }
 
     @Test
     public void testStatus() throws Exception {
         String status = this.service.getStatus();
         Assert.assertEquals("error status", "OK", status);
+    }
+
+    @Test
+    public void testIssues() throws Exception {
+        String issues = this.service.getIssues();
+        LOG.debug("\n{}", issues);
+        Assert.assertTrue("did not find expected info,", issues.contains("New issue"));
     }
 
     @Override

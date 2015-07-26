@@ -13,12 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.tascape.qa.template.suite;
+package com.tascape.qa.grws.suite;
 
-import com.tascape.qa.template.test.SampleTests;
+import com.tascape.qa.grws.test.GithubRepoTests;
 import com.tascape.qa.th.suite.AbstractSuite;
-import com.tascape.qa.template.driver.SampleWebService;
-import com.tascape.qa.th.comm.WebServiceClient;
+import com.tascape.qa.grws.driver.GithubRepoWebService;
+import com.tascape.qa.th.comm.WebServiceCommunication;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,28 +26,27 @@ import org.slf4j.LoggerFactory;
  *
  * @author linsong wang
  */
-public class SampleSmokeSuite extends AbstractSuite {
-    private static final Logger LOG = LoggerFactory.getLogger(SampleSmokeSuite.class);
+public class GithubRepoSmokeSuite extends AbstractSuite {
+    private static final Logger LOG = LoggerFactory.getLogger(GithubRepoSmokeSuite.class);
 
-    private WebServiceClient wsc;
+    private WebServiceCommunication wsc;
 
-    private SampleWebService adsIngestion;
+    private GithubRepoWebService adsIngestion;
 
     @Override
     public void setUpTestClasses() {
-        this.addTestClass(SampleTests.class);
+        this.addTestClass(GithubRepoTests.class);
     }
 
     @Override
     protected void setUpEnvironment() throws Exception {
-        // ssh -L8443:localhost:8443 ip-10-123-61-94.ec2.internal
-        this.wsc = new WebServiceClient(
-            SYSCONFIG.getProperty(SampleWebService.SYSPROP_HOST, "localhost"),
-            SYSCONFIG.getIntProperty(SampleWebService.SYSPROP_PORT, 8443));
+        this.wsc = new WebServiceCommunication(
+            SYSCONFIG.getProperty(GithubRepoWebService.SYSPROP_HOST, "localhost"),
+            SYSCONFIG.getIntProperty(GithubRepoWebService.SYSPROP_PORT, 8443));
         wsc.connect();
-        this.adsIngestion = new SampleWebService();
-        adsIngestion.setWebService(wsc);
-        this.putTestDirver(SampleTests.SAMPLE_SERVICE, adsIngestion);
+        this.adsIngestion = new GithubRepoWebService();
+        adsIngestion.setWebServiceComminication(wsc);
+        this.putTestDirver(GithubRepoTests.GITHUB_SERVICE, adsIngestion);
     }
 
     @Override
