@@ -43,7 +43,15 @@ public class GithubRepoSmokeSuite extends AbstractSuite {
         this.wsc = new WebServiceCommunication(
             SYSCONFIG.getProperty(GithubRepoWebService.SYSPROP_HOST, "localhost"),
             SYSCONFIG.getIntProperty(GithubRepoWebService.SYSPROP_PORT, 8443));
+        /*
+         * Setup the proper authentication method, based on your service deployment
+         *
+         * wsc.setClientCertificate("certificate-file-path", "certificate-key-password");
+         *
+         * wsc.setUsernamePassword("username", "password");
+         */
         wsc.connect();
+
         this.adsIngestion = new GithubRepoWebService();
         adsIngestion.setWebServiceComminication(wsc);
         this.putTestDirver(GithubRepoTests.GITHUB_SERVICE, adsIngestion);
