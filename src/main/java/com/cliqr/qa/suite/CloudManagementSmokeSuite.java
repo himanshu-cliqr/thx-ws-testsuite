@@ -14,8 +14,6 @@ import org.slf4j.LoggerFactory;
 public class CloudManagementSmokeSuite extends AbstractSuite {
     private static final Logger LOG = LoggerFactory.getLogger(CloudManagementSmokeSuite.class);
 
-    private WebServiceCommunication wsc;
-
     private CloudManagementWebService service;
 
     @Override
@@ -25,14 +23,7 @@ public class CloudManagementSmokeSuite extends AbstractSuite {
 
     @Override
     protected void setUpEnvironment() throws Exception {
-        this.wsc = new WebServiceCommunication(
-            SYSCONFIG.getProperty(WebServiceCommunication.SYSPROP_HOST, "localhost"),
-            SYSCONFIG.getIntProperty(WebServiceCommunication.SYSPROP_PORT, 443));
-        String user = SYSCONFIG.getProperty(CloudManagementWebService.SYSPROP_USER);
-        String pass = SYSCONFIG.getProperty(CloudManagementWebService.SYSPROP_PASS);
-        wsc.setUsernamePassword(user, pass);
-        wsc.connect();
-
+        WebServiceCommunication wsc = WebServiceCommunication.newInstance();
         this.service = new CloudManagementWebService();
         service.setWebServiceComminication(wsc);
         this.putTestDirver(CloudManagementTests.SERVICE, service);
@@ -44,13 +35,6 @@ public class CloudManagementSmokeSuite extends AbstractSuite {
             this.service.reset();
         } catch (Exception ex) {
             LOG.warn("Error resetting", ex);
-        }
-        if (this.wsc != null) {
-            try {
-                this.wsc.disconnect();
-            } catch (Exception ex) {
-                LOG.warn("Error shutting down connection", ex);
-            }
         }
     }
 }

@@ -15,10 +15,6 @@ import org.slf4j.LoggerFactory;
 public class CloudManagementWebService extends EntityDriver {
     private static final Logger LOG = LoggerFactory.getLogger(CloudManagementWebService.class);
 
-    public static final String SYSPROP_USER = "qa.th.comm.ws.USER";
-
-    public static final String SYSPROP_PASS = "qa.th.comm.ws.PASS";
-
     private enum Endpoint {
         STATUS("status"),
         V1_USERS("v1/users");
