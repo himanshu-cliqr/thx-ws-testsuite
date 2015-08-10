@@ -36,7 +36,7 @@ public class CloudManagementTests extends AbstractTest {
         int len = users.length();
         LOG.debug("Verify each password is masked.");
         for (int i = 0; i < len; i++) {
-            Assert.assertEquals("user name is not masked,",
+            Assert.assertEquals("password is not masked,",
                 "== red-acted ==",
                 users.getJSONObject(i).getString("password"));
         }

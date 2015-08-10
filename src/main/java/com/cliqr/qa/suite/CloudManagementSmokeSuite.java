@@ -1,4 +1,3 @@
-
 package com.cliqr.qa.suite;
 
 import com.cliqr.qa.driver.CloudManagementWebService;
@@ -29,7 +28,9 @@ public class CloudManagementSmokeSuite extends AbstractSuite {
         this.wsc = new WebServiceCommunication(
             SYSCONFIG.getProperty(WebServiceCommunication.SYSPROP_HOST, "localhost"),
             SYSCONFIG.getIntProperty(WebServiceCommunication.SYSPROP_PORT, 443));
-        wsc.setUsernamePassword("cliqradmin", "466A6C0C1B06D65E");
+        String user = SYSCONFIG.getProperty(CloudManagementWebService.SYSPROP_USER);
+        String pass = SYSCONFIG.getProperty(CloudManagementWebService.SYSPROP_PASS);
+        wsc.setUsernamePassword(user, pass);
         wsc.connect();
 
         this.service = new CloudManagementWebService();
