@@ -19,7 +19,7 @@ import org.slf4j.LoggerFactory;
 public class CloudManagementTests extends AbstractTest {
     private static final Logger LOG = LoggerFactory.getLogger(CloudManagementTests.class);
 
-    public static final TestDriver SERVICE = new TestDriver(CloudManagementTests.class, "");
+    public static final TestDriver SERVICE = new TestDriver(CloudManagementTests.class, "CLOUD_MANAGEMENT_SERVICE");
 
     private final CloudManagementWebService service;
 
