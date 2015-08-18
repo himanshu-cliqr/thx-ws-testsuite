@@ -1,3 +1,7 @@
 logs
 target
 nb*.xml
+
+.classpath
+.project
+.settings/

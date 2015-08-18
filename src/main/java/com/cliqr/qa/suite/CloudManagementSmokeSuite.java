@@ -23,6 +23,13 @@ public class CloudManagementSmokeSuite extends AbstractSuite {
 
     @Override
     protected void setUpEnvironment() throws Exception {
+        /*
+         * The following system properties are required.
+         * qa.th.comm.ws.HOST
+         * qa.th.comm.ws.PORT
+         * qa.th.comm.ws.USER
+         * qa.th.comm.ws.PASS
+         */
         WebServiceCommunication wsc = WebServiceCommunication.newInstance();
         this.service = new CloudManagementWebService();
         service.setWebServiceComminication(wsc);
