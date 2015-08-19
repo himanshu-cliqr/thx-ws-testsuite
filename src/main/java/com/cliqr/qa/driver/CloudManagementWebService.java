@@ -42,6 +42,10 @@ public class CloudManagementWebService extends EntityDriver {
     public JSONObject getUsers() throws IOException {
         return this.wsc.getJsonObject(Endpoint.V1_USERS.value);
     }
+    
+    public void postUser(JSONObject user) throws IOException {
+        this.wsc.postJson(Endpoint.V1_USERS.value, user);
+    }
 
     @Override
     public String getName() {
