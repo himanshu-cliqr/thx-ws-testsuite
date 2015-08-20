@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * web service.
+ * http://docs.cliqr.com/display/GS1/Home
  *
  * @author NA
  */

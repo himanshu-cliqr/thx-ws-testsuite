@@ -32,13 +32,13 @@ import org.slf4j.LoggerFactory;
 public class GithubRepoTests extends AbstractTest {
     private static final Logger LOG = LoggerFactory.getLogger(GithubRepoTests.class);
 
-    public static final TestDriver GITHUB_SERVICE = new TestDriver(GithubRepoTests.class, "GITHUB_SERVICE");
+    public static final TestDriver GITHUB_SERVICE = new TestDriver(GithubRepoTests.class, GithubRepoWebService.class);
 
     private final GithubRepoWebService service;
 
     public GithubRepoTests() {
         this.globalTimeout = new Timeout(10, TimeUnit.SECONDS);
-        this.service = this.getEntityDriver(GITHUB_SERVICE, GithubRepoWebService.class);
+        this.service = this.getEntityDriver(GITHUB_SERVICE);
     }
 
     @Test
